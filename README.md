@@ -11,6 +11,7 @@ Very little "e-commerce" with Cart and Auth global state using reducers, actions
 
 ## Usage
 
+```bash
 # Clone the repository
 $ git clone https://github.com/JadsonRibeiro/redux-little-ecommerce.git
 
@@ -28,3 +29,4 @@ $ yarn start
 
 # Access localhost
 $ http://localhost:3000
+```
