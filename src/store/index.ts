@@ -6,9 +6,11 @@ import rootReducer from './modules/rootReducer'
 import rootSaga from './modules/rootSaga'
 
 import { ICartState } from './modules/cart/types'
+import { IAuthState } from './modules/auth/types'
 
 export interface IState {
     cart: ICartState;
+    auth: IAuthState
 }
 
 const sagaMiddleware = createSagaMiddleware();

@@ -10,12 +10,12 @@ interface CatalogItemProps {
 }
 
 export const CatalogItem: React.FC<CatalogItemProps> = ({ product }) => {
+    const dispatch = useDispatch()
 
     const hasFailedStockCheck = useSelector<IState, boolean>(state => 
         state.cart.failedStockCheck.includes(product.id)    
     )
 
-    const dispatch = useDispatch()
     const handleAddProductToCart = useCallback(() => {
         dispatch(addProductToCartRequest(product))
     }, [dispatch, product]); 
