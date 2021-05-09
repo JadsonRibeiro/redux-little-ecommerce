@@ -1,0 +1,26 @@
+h1 {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    padding: 20px;
+    background-color: rgb(243, 240, 240);
+
+    div.formControl {
+        & + div.formControl {
+            margin-top: 10px;
+        }
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        margin-top: 10px;
+    }
+}

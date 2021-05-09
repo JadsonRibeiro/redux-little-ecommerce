@@ -1,33 +1,29 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import { IState } from '../store'
-import { login, logout } from '../store/modules/auth/actions'
+import { logout } from '../store/modules/auth/actions'
 import { IAuthState } from '../store/modules/auth/types'
 
-const user = {
-    name: 'Jadson Ribeiro',
-    email: 'jadson@email.com'
-}
+import '../styles/HeaderComponent.scss';
 
 const Header = () => {
     const dispatch = useDispatch();
     const auth = useSelector<IState, IAuthState>(state => state.auth);
 
-
-    const handleLogin = useCallback(() => {
-        dispatch(login(user));
-    }, [dispatch]);
-
     const handleLogout = useCallback(() => {
         dispatch(logout());
     }, [dispatch]);
 
+    console.log('Auth', auth)
+
     return (
-        <div>
+        <header>
             {auth.logged 
             ? (
                 <>
-                    <span>Logado</span>
+                    <span>Olá, {auth.user?.email}</span>
                     <button 
                         type="button"
                         onClick={handleLogout}
@@ -37,17 +33,18 @@ const Header = () => {
                 </>
             ): (
                 <>
-                    <span>Não Logado</span>
-                    <button 
-                        type="button"
-                        onClick={handleLogin}
-                    >
-                        Fazer login
-                    </button>
+                    <div></div>
+                    <Link to="/login">
+                        <button 
+                            type="button"
+                        >
+                            Fazer login
+                        </button>
+                    </Link>
                 </>
             )
             }
-        </div>
+        </header>
     )
 }
 

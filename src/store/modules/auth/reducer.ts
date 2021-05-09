@@ -1,21 +1,27 @@
 import { Reducer } from "redux";
+
+import Auth from '../../../services/auth';
+
 import { ActionTypes, IAuthState } from "./types";
 
 const INITIAL_STATE: IAuthState = {
-    logged: false
+    logged: false,
+    user: null
 }
 
 const auth: Reducer<IAuthState> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case ActionTypes.login: {
+        case ActionTypes.loginSuccess: {
             return {
                 logged: true,
-                user: action.payload
+                user: action.payload.user
             }
         }
         case ActionTypes.logout: {
+            Auth.logout();
             return {
-                logged: false
+                logged: false,
+                user: null
             }
         }
         default: {

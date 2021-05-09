@@ -1,14 +1,15 @@
+import firebase from 'firebase'
+
 export enum ActionTypes {
-    login = 'LOGIN',
+    loginRequest = 'LOGIN_REQUEST',
+    loginSuccess = 'LOGIN_SUCCESS',
+    loginFailure = 'LOGIN_FAILURE',
     logout = 'LOGOUT'
 }
 
 export interface IAuthState {
     logged: boolean;
-    user?: IUser
+    user?: IUser | null
 }
 
-export interface IUser {
-    name: string;
-    email: string;
-}
+export interface IUser extends firebase.User {} 

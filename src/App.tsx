@@ -1,17 +1,26 @@
+import { useEffect } from 'react';
 import { Provider } from 'react-redux'
+import firebase from './services/firebase';
 
+import Routes from './routes';
 import store from './store';
 
-import Catalog from './components/Catalog';
-import Cart from './components/Cart';
-import Header from './components/Header';
+import './styles/global.scss'
+import { loginSucess } from './store/modules/auth/actions';
 
 function App() {
+  useEffect(() => {
+    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
+      console.log('Current User', user);
+
+      if(user) store.dispatch(loginSucess(user));
+    });
+    return () => unregisterAuthObserver();
+  }, []);
+
   return (
     <Provider store={store}>
-      <Header />
-      <Catalog />
-      <Cart />
+      <Routes />
     </Provider>
   );
 }

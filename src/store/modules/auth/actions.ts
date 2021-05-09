@@ -1,8 +1,17 @@
 import { ActionTypes, IUser } from "./types";
 
-export function login(user: IUser) {
+export function loginRequest(email: string, password: string) {
     return {
-        type: ActionTypes.login,
+        type: ActionTypes.loginRequest,
+        payload: {
+            email, password
+        }
+    }
+}
+
+export function loginSucess(user: IUser) {
+    return {
+        type: ActionTypes.loginSuccess,
         payload: {
             user
         }
